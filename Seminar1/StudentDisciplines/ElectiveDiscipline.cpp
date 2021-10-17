@@ -48,3 +48,12 @@ void ElectiveDiscipline::delistStudent(int facultyNumber) {
         throw logic_error("Student isn't enrolled. You must have made a mistake.");
     }
 }
+
+bool ElectiveDiscipline::hasEnrolledStudent(int facultyNumber) const {
+    for (auto &enrolledStudent: enrolledStudents) {
+        if (enrolledStudent->getFacultyNumber() == facultyNumber) {
+           return true;
+        }
+    }
+    return false;
+}

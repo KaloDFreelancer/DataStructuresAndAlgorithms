@@ -19,6 +19,7 @@ public:
     ElectiveDiscipline(string name, unsigned int number, int minAcademicYear, int maxNumberOfStudents);
     void enrollStudent(Student* student);
     void delistStudent(int facultyNumber);
+    bool hasEnrolledStudent(int facultyNumber) const;
 };
 
 

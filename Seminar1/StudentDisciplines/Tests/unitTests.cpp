@@ -134,3 +134,30 @@ TEST(ElectiveDiscipline, testSuccessfulDelistStudentReservePushToEnrollment) {
     delete student1;
     delete student2;
 }
+
+
+TEST(StudentDisciplines, testPrintAllEnrolledDisciplinesForStudent) {
+//    Arrange
+    ElectiveDisciplinesExtended discipline1("OOP", 111110, 1, 1);
+    ElectiveDisciplinesExtended discipline2("Linear Algebra", 111111, 1, 5);
+    ElectiveDisciplinesExtended discipline3("Data Structures And Algorithms", 111112, 2, 3);
+    vector<ElectiveDisciplinesExtended> disciplines{discipline1, discipline2, discipline3};
+    auto *student = new Student(10001, 2, "Kaloyan", "Mitev");
+
+    for (auto &item : disciplines){
+        item.enrollStudent(student);
+    }
+    int disciplinesEnrolledForStudent = 0;
+
+//    Act
+    for (auto &item : disciplines){
+        if (item.hasEnrolledStudent(student->getFacultyNumber())){
+            disciplinesEnrolledForStudent++;
+        }
+    }
+
+//    Assert
+    ASSERT_EQ(3,disciplinesEnrolledForStudent);
+
+    delete student;
+}
